@@ -39,9 +39,8 @@ export const ComponenteOptionSelect = ({ nombre, opcion }) => {
           </option>
         ))}
       </select>
-      {factor !== null && <p>Factor seleccionado: {factor}</p>}
-      {factor2 !== null && <p>Factor seleccionado: {factor2}</p>}
-
+      {factor !== null && <p>Factor: {factor}</p>}
+      {factor2 !== null && <p>Factor2: {factor2}</p>}
     </>
   );
 };
