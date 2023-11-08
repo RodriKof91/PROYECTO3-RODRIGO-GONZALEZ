@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import jsonData from '../datos.json';
 
-export const ComponenteLabel = ({ nombre, opcion }) => {
+export const ComponenteOptionSelect = ({ nombre, opcion }) => {
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('');
   const [factor, setFactor] = useState(null); 
 

@@ -1,4 +1,4 @@
-import { ComponenteLabel } from "./ComponenteLabel";
+import { ComponenteOptionSelect } from "./ComponenteOptionSelect";
 import { ComponenteInput } from "./ComponenteInput";
 import { ComponenteCotizador } from "./ComponenteCotizador";
 
@@ -14,13 +14,17 @@ const FormularioDivStyle = styled.div`
   text-align: center;
   `
 
+  const onSubmit = (event) => {
+    event.preventDefault();
+  }
+
 export const ComponenteFormulario = () => {
   return (
     <FormularioDivStyle>
       <h2>Completa los datos solicitados</h2>
-      <form action="">
-        <ComponenteLabel nombre={'propiedad'} opcion={'Selecciona el tipo de propiedad '}/>
-        <ComponenteLabel nombre={'ubicacion'} opcion={'Seleciona su ubicacion '}/>
+      <form onSubmit={(event) => onSubmit(event)}>
+        <ComponenteOptionSelect nombre={'propiedad'} opcion={'Selecciona el tipo de propiedad '}/>
+        <ComponenteOptionSelect nombre={'ubicacion'} opcion={'Seleciona su ubicacion '}/>
         <ComponenteInput />
         <ComponenteCotizador />
       </form>
