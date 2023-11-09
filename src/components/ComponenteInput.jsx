@@ -1,11 +1,12 @@
 import { useState } from "react"
 
-export const ComponenteInput = ({onFactorChang}) => {
+export const ComponenteInput = ({onFactorChange}) => {
     const [metros, setMetros] = useState(20);
 
     const cambiarEntrada = (event) => {
         const nuevosMetros = event.target.value
         setMetros(nuevosMetros)
+        onFactorChange(nuevosMetros);
     }
     return (
         <>
