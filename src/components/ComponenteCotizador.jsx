@@ -6,21 +6,19 @@ const StyleCotizador = styled.div`
   text-align: center;
 `
 
-export const ComponenteCotizador = ({valorPropiedad, valorUbicacion, metros}) => {
+export const ComponenteCotizador = ({valorPropiedad, valorUbicacion, metrosCuadrados}) => {
   const [precio, setPrecio] = useState(0.00)
   const calcularPrecio = () => {
-    if (valorPropiedad !== null && valorUbicacion !== null) {
-      const resultado = valorPropiedad * valorUbicacion;
-      setPrecio(resultado);
+    if (valorPropiedad !== null && valorUbicacion !== null && metrosCuadrados > 19) {
+      const resultado = valorPropiedad * valorUbicacion * metrosCuadrados * 35.86;
+      setPrecio(resultado.toFixed(2));
     }
   };
 
   return (
     <div>
       <button onClick={calcularPrecio}>Cotizar</button>
-      {precio !== 0.00 && <p>Precio estimado: $ {precio}</p>}
-      {valorPropiedad !== null && <p>Factor: {valorPropiedad}</p>}
-      {valorUbicacion !== null && <p>Factor2: {valorUbicacion}</p>}
+      <p>Precio estimado: $ {precio}</p>
     </div>
   )
 }

@@ -1,15 +1,18 @@
 import { useState } from "react"
 
-export const ComponenteInput = ({metros}) => {
+export const ComponenteInput = ({onFactorChang}) => {
+    const [metros, setMetros] = useState(20);
+
     const cambiarEntrada = (event) => {
-        setMetros(event.target.value)
+        const nuevosMetros = event.target.value
+        setMetros(nuevosMetros)
     }
     return (
         <>
             <label>Ingrese metros cuadrados: </label>
             <input
                 value={metros}
-                type="text"
+                type= "number"
                 onChange={(event) => cambiarEntrada(event)}
             />
         </>
