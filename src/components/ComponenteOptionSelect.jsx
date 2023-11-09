@@ -28,7 +28,7 @@ export const ComponenteOptionSelect = ({ nombre, opcion, onFactorChange }) => {
     <>
       <label htmlFor="">{opcion}</label>
       <select value={opcionSeleccionada} onChange={handleSeleccion}>
-        <option value="">...</option>
+        <option value="" disabled>...</option>
         {filteredData.map((item) => (
           <option key={item.tipo} value={item.tipo}>
             {item.tipo}
