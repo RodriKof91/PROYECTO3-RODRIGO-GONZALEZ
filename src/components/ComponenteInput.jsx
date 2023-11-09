@@ -1,7 +1,6 @@
 import { useState } from "react"
 
-export const ComponenteInput = () => {
-    const [metros, setMetros] = useState(20)
+export const ComponenteInput = ({metros}) => {
     const cambiarEntrada = (event) => {
         setMetros(event.target.value)
     }

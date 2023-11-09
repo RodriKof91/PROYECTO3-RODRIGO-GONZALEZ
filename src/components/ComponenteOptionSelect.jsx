@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import jsonData from '../datos.json';
 
-export const ComponenteOptionSelect = ({ nombre, opcion }) => {
+export const ComponenteOptionSelect = ({ nombre, opcion, onFactorChange }) => {
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('');
-  const [factor, setFactor] = useState(null); 
-  const [factor2, setFactor2] = useState(null); 
+ 
 
 
   const handleSeleccion = (event) => {
@@ -14,15 +13,12 @@ export const ComponenteOptionSelect = ({ nombre, opcion }) => {
     const objetoSeleccionado = jsonData.find((item) => item.tipo === valorSeleccionado);
     if (objetoSeleccionado) {
       if (objetoSeleccionado.categoria==='propiedad'){
-        setFactor(objetoSeleccionado.factor);
-      }
+        onFactorChange(objetoSeleccionado.factor);      }
       else{
-        setFactor2(objetoSeleccionado.factor);
-
+        onFactorChange(objetoSeleccionado.factor);
       }
     } else {
-      setFactor(null);
-      setFactor2(null);
+      onFactorChange(null);
     }
   };
 
@@ -39,8 +35,7 @@ export const ComponenteOptionSelect = ({ nombre, opcion }) => {
           </option>
         ))}
       </select>
-      {factor !== null && <p>Factor: {factor}</p>}
-      {factor2 !== null && <p>Factor2: {factor2}</p>}
+
     </>
   );
 };
