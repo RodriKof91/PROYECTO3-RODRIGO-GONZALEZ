@@ -10,6 +10,7 @@ export const ComponenteCotizador = ({valorPropiedad, valorUbicacion, metrosCuadr
   const [precio, setPrecio] = useState(0.00)
   const calcularPrecio = () => {
     if (valorPropiedad !== null && valorUbicacion !== null && metrosCuadrados > 19) {
+
       const resultado = valorPropiedad * valorUbicacion * metrosCuadrados * 35.86;
       setPrecio(resultado.toFixed(2));
     }
@@ -20,6 +21,7 @@ export const ComponenteCotizador = ({valorPropiedad, valorUbicacion, metrosCuadr
     <div>
       <button onClick={calcularPrecio}>Cotizar</button>
       <p>Precio estimado: $ {precio}</p>
+
     </div>
   )
 }

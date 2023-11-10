@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
-import jsonData from '../datos.json';
+import React, { useState, useEffect } from 'react';
 
 export const ComponenteOptionSelect = ({ nombre, opcion, onFactorChange }) => {
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('');
- 
+  const [jsonData, setJsonData] = useState([]);
+  const [error, setError] = useState(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+
+      const response = await fetch('/datos.json');
+
+      const data = await response.json();
+      setJsonData(data);
+    };
+
+    fetchData();
+  }, []);
 
   const handleSeleccion = (event) => {
     const valorSeleccionado = event.target.value;
@@ -12,11 +23,7 @@ export const ComponenteOptionSelect = ({ nombre, opcion, onFactorChange }) => {
 
     const objetoSeleccionado = jsonData.find((item) => item.tipo === valorSeleccionado);
     if (objetoSeleccionado) {
-      if (objetoSeleccionado.categoria==='propiedad'){
-        onFactorChange(objetoSeleccionado.factor);      }
-      else{
-        onFactorChange(objetoSeleccionado.factor);
-      }
+      onFactorChange(objetoSeleccionado.factor);
     } else {
       onFactorChange(null);
     }
