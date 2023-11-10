@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 export const ComponenteOptionSelect = ({ nombre, opcion, onFactorChange }) => {
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('');
   const [jsonData, setJsonData] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
