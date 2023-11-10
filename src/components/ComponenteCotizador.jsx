@@ -13,6 +13,7 @@ export const ComponenteCotizador = ({valorPropiedad, valorUbicacion, metrosCuadr
       const resultado = valorPropiedad * valorUbicacion * metrosCuadrados * 35.86;
       setPrecio(resultado.toFixed(2));
     }
+
   };
 
   return (
