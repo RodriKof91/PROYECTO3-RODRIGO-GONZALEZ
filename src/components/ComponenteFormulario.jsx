@@ -21,7 +21,6 @@ export const ComponenteFormulario = () => {
   const [factor2, setFactor2] = useState(null);
   const [metros, setMetros] = useState(20);
 
-
   const onSubmit = (event) => {
     event.preventDefault();
   }
@@ -29,9 +28,9 @@ export const ComponenteFormulario = () => {
     <FormularioDivStyle>
       <h2>Completa los datos solicitados</h2>
       <form onSubmit={(event) => onSubmit(event)}>
-        <ComponenteOptionSelect nombre={'propiedad'} opcion={'Selecciona el tipo de propiedad '} onFactorChange={(factor) => setFactor(factor)} factor={factor} />
-        <ComponenteOptionSelect nombre={'ubicacion'} opcion={'Seleciona su ubicacion '} onFactorChange={(factor2) => setFactor2(factor2)} factor2={factor2} />
-        <ComponenteInput onFactorChange={(metros) => setMetros(metros)} metros={metros} />
+        <ComponenteOptionSelect nombre={'propiedad'} opcion={'Selecciona el tipo de propiedad '} onFactorChange={(factor) => setFactor(factor)} />
+        <ComponenteOptionSelect nombre={'ubicacion'} opcion={'Seleciona su ubicacion '} onFactorChange={(factor2) => setFactor2(factor2)} />
+        <ComponenteInput onMetrosChange={(metros) => setMetros(metros)} metros={metros}/>
         <ComponenteCotizador valorPropiedad={factor} valorUbicacion={factor2} metrosCuadrados={metros} />
 
       </form>
