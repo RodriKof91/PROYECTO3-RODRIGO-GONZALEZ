@@ -23,7 +23,7 @@ export const ComponenteCotizador = ({ valorPropiedad, valorUbicacion, metrosCuad
     });
   }
 
-  
+
 
 
 
@@ -33,12 +33,12 @@ export const ComponenteCotizador = ({ valorPropiedad, valorUbicacion, metrosCuad
 
       const resultado = valorPropiedad * valorUbicacion * metrosCuadrados * 35.86;
       setTimeout(() => {
-      
-     
+
+
         alerta("", "Cotización realizada con éxito.", "success");
-              setBotonValor('Cotizar');
-              setPrecio(resultado.toFixed(2));
-            }, 2500);
+        setBotonValor('Cotizar');
+        setPrecio(resultado.toFixed(2));
+      }, 2500);
     }
     else {
       alerta("", "Debes completar todos los datos en pantalla.", "warning");
@@ -49,11 +49,17 @@ export const ComponenteCotizador = ({ valorPropiedad, valorUbicacion, metrosCuad
     ;
 
   return (
-    <div>
-      <button className='btnCotizar' onClick={calcularPrecio}>{botonValor}</button>
-      <p>Precio estimado: $ {precio}</p>
-      
+    <>
+      <div>
+        <button className='btnCotizar' onClick={calcularPrecio}>{botonValor}</button>
 
-    </div>
+      </div>
+      <div>
+        <p>Precio estimado: $ {precio}</p>
+        {precio !== 0.00 && <button>💾</button>}
+      </div>
+
+
+    </>
   )
 }
