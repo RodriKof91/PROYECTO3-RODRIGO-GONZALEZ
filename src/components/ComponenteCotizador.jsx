@@ -8,8 +8,9 @@ const StyleCotizador = styled.div`
   text-align: center;
 `
 
-export const ComponenteCotizador = ({valorPropiedad, valorUbicacion, metrosCuadrados}) => {
+export const ComponenteCotizador = ({ valorPropiedad, valorUbicacion, metrosCuadrados }) => {
   const [precio, setPrecio] = useState(0.00)
+  const [botonValor, setBotonValor] = useState('Cotizar')
 
   function alerta(titulo, mensaje, icono) {
     Swal.fire({
@@ -22,32 +23,37 @@ export const ComponenteCotizador = ({valorPropiedad, valorUbicacion, metrosCuadr
     });
   }
 
+  
 
 
 
   const calcularPrecio = () => {
     if (valorPropiedad !== null && valorUbicacion !== null && metrosCuadrados > 19) {
+      setBotonValor(<img src={Ellipsis}></img>);
 
       const resultado = valorPropiedad * valorUbicacion * metrosCuadrados * 35.86;
-
-      alerta("", "Cotización realizada con éxito.", "success");
+      setTimeout(() => {
       
-      setPrecio(resultado.toFixed(2));
+     
+        alerta("", "Cotización realizada con éxito.", "success");
+              setBotonValor('Cotizar');
+              setPrecio(resultado.toFixed(2));
+            }, 2500);
     }
     else {
       alerta("", "Debes completar todos los datos en pantalla.", "warning");
     }
 
   }
-  
-  ;
+
+    ;
 
   return (
     <div>
-      <button className='btnCotizar' onClick={calcularPrecio}>Cotizar</button>
+      <button className='btnCotizar' onClick={calcularPrecio}>{botonValor}</button>
       <p>Precio estimado: $ {precio}</p>
-{/*       <img src={Ellipsis} alt="" />
- */}
+      
+
     </div>
   )
 }
