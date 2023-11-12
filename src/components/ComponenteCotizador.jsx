@@ -11,6 +11,7 @@ const StyleCotizador = styled.div`
 export const ComponenteCotizador = ({ valorPropiedad, valorUbicacion, metrosCuadrados }) => {
   const [precio, setPrecio] = useState(0.00)
   const [botonValor, setBotonValor] = useState('Cotizar')
+  const [historial, setHistorial] = useState([])
 
   function alerta(titulo, mensaje, icono) {
     Swal.fire({
@@ -22,9 +23,6 @@ export const ComponenteCotizador = ({ valorPropiedad, valorUbicacion, metrosCuad
       width: "15rem",
     });
   }
-
-
-
 
 
   const calcularPrecio = () => {
@@ -45,7 +43,7 @@ export const ComponenteCotizador = ({ valorPropiedad, valorUbicacion, metrosCuad
     }
 
   }
-
+  
     ;
 
   return (
@@ -56,7 +54,6 @@ export const ComponenteCotizador = ({ valorPropiedad, valorUbicacion, metrosCuad
       </div>
       <div>
         <p>Precio estimado: $ {precio}</p>
-        {precio !== 0.00 && <button>💾</button>}
       </div>
 
 

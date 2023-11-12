@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom"
+
 export const ComponenteHeader = () => {
     return (
         <header>
             <div>
                 <nav>
-                    <a href="">📋</a>
+                    <Link to="/historial">📋 </Link>
                 </nav>
             </div>
             <div>

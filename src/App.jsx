@@ -1,13 +1,15 @@
-import { useState } from 'react'
-import { ComponenteHeader } from './components/ComponenteHeader'
-import { ComponenteMain } from './components/ComponenteMain'
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { Home } from "./pages/Home"
+import { Historial } from "./pages/historial"
 
 function App() {
   return (
-    <>
-      <ComponenteHeader />
-      <ComponenteMain />
-    </>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />}/>
+      <Route path="/historial" element = {<Historial />}/>
+    </Routes>
+    </BrowserRouter>
   )
 }
 
