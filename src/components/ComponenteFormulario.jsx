@@ -17,9 +17,12 @@ const FormularioDivStyle = styled.div`
 
 export const ComponenteFormulario = () => {
 
-  const [factor, setFactor] = useState(null);
-  const [factor2, setFactor2] = useState(null);
+  const [valor1, setValor1] = useState(null);
+  const [valor2, setValor2] = useState(null);
   const [metros, setMetros] = useState(20);
+  const [historial, setHistorial] = useState([]);
+
+
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -28,11 +31,10 @@ export const ComponenteFormulario = () => {
     <FormularioDivStyle>
       <h2>Completa los datos solicitados</h2>
       <form onSubmit={(event) => onSubmit(event)}>
-        <ComponenteOptionSelect nombre={'propiedad'} opcion={'Selecciona el tipo de propiedad '} onFactorChange={(factor) => setFactor(factor)} />
-        <ComponenteOptionSelect nombre={'ubicacion'} opcion={'Seleciona su ubicacion '} onFactorChange={(factor2) => setFactor2(factor2)} />
+        <ComponenteOptionSelect nombre={'propiedad'} opcion={'Selecciona el tipo de propiedad '} onFactorChange={(valor1) => setValor1(valor1)} />
+        <ComponenteOptionSelect nombre={'ubicacion'} opcion={'Seleciona su ubicacion '} onFactorChange={(valor2) => setValor2(valor2)} />
         <ComponenteInput onMetrosChange={(metros) => setMetros(metros)} metros={metros}/>
-        <ComponenteCotizador valorPropiedad={factor} valorUbicacion={factor2} metrosCuadrados={metros} />
-
+        <ComponenteCotizador propiedad={valor1} ubicacion={valor2} metrosCuadrados={metros} historial={historial} onHistorialSave={(historial) => setHistorial(historial)}/>
       </form>
     </FormularioDivStyle>
 

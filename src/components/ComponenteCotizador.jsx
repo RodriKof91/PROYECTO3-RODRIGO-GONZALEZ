@@ -8,10 +8,9 @@ const StyleCotizador = styled.div`
   text-align: center;
 `
 
-export const ComponenteCotizador = ({ valorPropiedad, valorUbicacion, metrosCuadrados }) => {
-  const [precio, setPrecio] = useState(0.00)
-  const [botonValor, setBotonValor] = useState('Cotizar')
-  const [historial, setHistorial] = useState([])
+export const ComponenteCotizador = ({ propiedad, ubicacion, metrosCuadrados, onHistorialSave, historial }) => {
+  const [precio, setPrecio] = useState(0.00);
+  const [botonValor, setBotonValor] = useState('Cotizar');
 
   function alerta(titulo, mensaje, icono) {
     Swal.fire({
@@ -26,10 +25,10 @@ export const ComponenteCotizador = ({ valorPropiedad, valorUbicacion, metrosCuad
 
 
   const calcularPrecio = () => {
-    if (valorPropiedad !== null && valorUbicacion !== null && metrosCuadrados > 19) {
+    if (propiedad !== null && ubicacion !== null && metrosCuadrados > 19) {
       setBotonValor(<img src={Ellipsis}></img>);
 
-      const resultado = valorPropiedad * valorUbicacion * metrosCuadrados * 35.86;
+      const resultado = propiedad.factor * ubicacion.factor * metrosCuadrados * 35.86;
       setTimeout(() => {
 
 
@@ -37,12 +36,32 @@ export const ComponenteCotizador = ({ valorPropiedad, valorUbicacion, metrosCuad
         setBotonValor('Cotizar');
         setPrecio(resultado.toFixed(2));
       }, 2500);
+
+
     }
     else {
       alerta("", "Debes completar todos los datos en pantalla.", "warning");
     }
 
   }
+
+  const cotizacion = {
+    fechaCotizacion: new Date().toLocaleString(),
+    propiedad: propiedad,
+    ubicacion: ubicacion,
+    metrosC: metrosCuadrados,
+    precioFinal: precio,
+  }
+
+  function guardarHistorial(){
+    onHistorialSave([...historial, cotizacion])
+    alerta("", "Cotización guardada con éxito.", "success");
+    localStorage.setItem(
+      "historial",
+      JSON.stringify(historial)
+    );
+  }
+  
   
     ;
 
@@ -54,8 +73,8 @@ export const ComponenteCotizador = ({ valorPropiedad, valorUbicacion, metrosCuad
       </div>
       <div>
         <p>Precio estimado: $ {precio}</p>
+        {precio !== 0 && (<button onClick={guardarHistorial}>💾</button>)}
       </div>
-
 
     </>
   )

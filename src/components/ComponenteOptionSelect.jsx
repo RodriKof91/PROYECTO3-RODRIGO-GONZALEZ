@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 export const ComponenteOptionSelect = ({ nombre, opcion, onFactorChange }) => {
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('');
   const [jsonData, setJsonData] = useState([]);
-
   useEffect(() => {
     const fetchData = async () => {
 
@@ -21,14 +20,19 @@ export const ComponenteOptionSelect = ({ nombre, opcion, onFactorChange }) => {
     setOpcionSeleccionada(valorSeleccionado);
 
     const objetoSeleccionado = jsonData.find((item) => item.tipo === valorSeleccionado);
+
     if (objetoSeleccionado) {
-      onFactorChange(objetoSeleccionado.factor);
+      onFactorChange(objetoSeleccionado);
     } else {
       onFactorChange(null);
     }
   };
 
+
+  
+
   const filteredData = jsonData.filter((item) => item.categoria === nombre);
+
 
   return (
     <>
@@ -41,6 +45,7 @@ export const ComponenteOptionSelect = ({ nombre, opcion, onFactorChange }) => {
           </option>
         ))}
       </select>
+
 
     </>
   );
