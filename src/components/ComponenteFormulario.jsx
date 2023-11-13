@@ -12,13 +12,13 @@ export const ComponenteFormulario = () => {
   const [metros, setMetros] = useState(20);
   const [historialCotizaciones, setHistorialCotizaciones] = useState([]);
 
-  const historialGuardado = localStorage.getItem("historialCotizaciones");
-  const historialParseado = JSON.parse(historialGuardado);
+  const guardarHistorial = localStorage.getItem("historialCotizaciones");
+  const historialOjeto = JSON.parse(guardarHistorial);
 
 
   useEffect(() => {
-    if (historialParseado) {
-      setHistorialCotizaciones(historialParseado);
+    if (historialOjeto) {
+      setHistorialCotizaciones(historialOjeto);
     } else {
       setHistorialCotizaciones([]);
     }
@@ -34,7 +34,7 @@ export const ComponenteFormulario = () => {
         <ComponenteOptionSelect nombre={'propiedad'} opcion={'Selecciona el tipo de propiedad '} onFactorChange={(valor1) => setValor1(valor1)} />
         <ComponenteOptionSelect nombre={'ubicacion'} opcion={'Seleciona su ubicacion '} onFactorChange={(valor2) => setValor2(valor2)} />
         <ComponenteInput onMetrosChange={(metros) => setMetros(metros)} metros={metros}/>
-        <ComponenteCotizador propiedad={valor1} ubicacion={valor2} metrosCuadrados={metros} historial={historialCotizaciones} onHistorialSave={(historialCotizaciones) => setHistorialCotizaciones(historialCotizaciones)}/>
+        <ComponenteCotizador propiedad={valor1} ubicacion={valor2} metrosCuadrados={metros} onHistorialSave={(historialCotizaciones) => setHistorialCotizaciones(historialCotizaciones)}/>
       </form>
     </div>
 

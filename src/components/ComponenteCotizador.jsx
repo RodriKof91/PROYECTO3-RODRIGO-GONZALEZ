@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import Swal from "sweetalert2";
 import Ellipsis from '/images/ellipsis.gif'
 
 
-export const ComponenteCotizador = ({ propiedad, ubicacion, metrosCuadrados, onHistorialSave, historial }) => {
+export const ComponenteCotizador = ({ propiedad, ubicacion, metrosCuadrados, onHistorialSave }) => {
   const [precio, setPrecio] = useState(0.00);
   const [botonValor, setBotonValor] = useState('Cotizar');
 
