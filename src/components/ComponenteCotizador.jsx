@@ -3,10 +3,6 @@ import styled from 'styled-components'
 import Swal from "sweetalert2";
 import Ellipsis from '/images/ellipsis.gif'
 
-const StyleCotizador = styled.div`
-  margin: 20px;
-  text-align: center;
-`
 
 export const ComponenteCotizador = ({ propiedad, ubicacion, metrosCuadrados, onHistorialSave, historial }) => {
   const [precio, setPrecio] = useState(0.00);
@@ -26,7 +22,7 @@ export const ComponenteCotizador = ({ propiedad, ubicacion, metrosCuadrados, onH
 
   const calcularPrecio = () => {
     if (propiedad !== null && ubicacion !== null && metrosCuadrados > 19) {
-      setBotonValor(<img src={Ellipsis}></img>);
+      setBotonValor(<img src={Ellipsis} alt="Loading..."></img>);
 
       const resultado = propiedad.factor * ubicacion.factor * metrosCuadrados * 35.86;
       setTimeout(() => {
@@ -41,6 +37,7 @@ export const ComponenteCotizador = ({ propiedad, ubicacion, metrosCuadrados, onH
     }
     else {
       alerta("", "Debes completar todos los datos en pantalla.", "warning");
+      setPrecio(0.00);
     }
 
   }
@@ -53,13 +50,14 @@ export const ComponenteCotizador = ({ propiedad, ubicacion, metrosCuadrados, onH
     precioFinal: precio,
   }
 
-  function guardarHistorial(){
-    onHistorialSave([...historial, cotizacion])
+  function guardarHistorial() {
+    onHistorialSave((prevHistorial) => {
+      const nuevoHistorial = [...prevHistorial, cotizacion];
+      localStorage.setItem("historialCotizaciones", JSON.stringify(nuevoHistorial));
+      return nuevoHistorial;
+    });
+  
     alerta("", "Cotización guardada con éxito.", "success");
-    localStorage.setItem(
-      "historial",
-      JSON.stringify(historial)
-    );
   }
   
   
@@ -67,15 +65,16 @@ export const ComponenteCotizador = ({ propiedad, ubicacion, metrosCuadrados, onH
 
   return (
     <>
-      <div>
-        <button className='btnCotizar' onClick={calcularPrecio}>{botonValor}</button>
+      <div className='center separador'>
+        <button className='button button-outline' onClick={calcularPrecio}>{botonValor}</button>
 
       </div>
-      <div>
-        <p>Precio estimado: $ {precio}</p>
-        {precio !== 0 && (<button onClick={guardarHistorial}>💾</button>)}
+      <div className='center separador flex'>
+        <p className='importe'>Precio estimado: $ {precio}</p>
+        {precio !== 0 && (<button className='guardar' 
+        onClick={guardarHistorial} 
+        title='Guardar Historial'>💾</button>)}
       </div>
-
     </>
   )
 }

@@ -1,8 +1,7 @@
 export const ComponenteHistorialHeader = () => {
   return (
     <header>
-        <h1>Ver Historial</h1>
-        <p>📋</p>
+        <h1 className="center separador">Ver Historial 📋</h1>
     </header>
   )
 }
